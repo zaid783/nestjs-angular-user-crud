@@ -1,98 +1,208 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# User Management CRUD Application
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A complete full-stack application built with NestJS backend and Angular frontend. This project features a comprehensive user management system with file upload functionality.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 🚀 Project Features
 
-## Description
+### Backend Features (NestJS)
+- **User CRUD Operations** - Create, read, update, and delete users
+- **File Upload System** - Upload multiple files for each user
+- **Database Integration** - MikroORM with PostgreSQL database
+- **API Documentation** - Swagger integration for testing
+- **TypeScript Support** - Fully written in TypeScript
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### Frontend Features (Angular)
+- **Modern UI** - Built with Angular framework
+- **Responsive Design** - Works on both mobile and desktop
+- **HTTP Integration** - Connected to backend APIs
 
-## Project setup
+## 🛠️ Technologies Used
 
-```bash
-$ npm install
-```
+### Backend Stack:
+- **NestJS** - Progressive Node.js framework for building APIs
+- **MikroORM** - TypeScript ORM for database operations
+- **PostgreSQL** - Powerful open-source relational database
+- **Multer** - File upload handling
+- **Swagger** - API documentation and testing
+- **TypeScript** - Type-safe JavaScript
 
-## Compile and run the project
+### Frontend Stack:
+- **Angular** - Web application framework
+- **TypeScript** - Programming language
+- **Angular CLI** - Development tools
 
-```bash
-# development
-$ npm run start
+## 🚀 Installation & Setup Guide
 
-# watch mode
-$ npm run start:dev
+### Step 1: Prerequisites
 
-# production mode
-$ npm run start:prod
-```
+- **Node.js** (v16 or higher)
+- **PostgreSQL** (v12 or higher)
+- **npm** or **yarn**
 
-## Run tests
+### Step 2: Database Setup (PostgreSQL)
+
+1. Make sure PostgreSQL is installed and running on your system
+2. Create a new database:
 
 ```bash
-# unit tests
-$ npm run test
+# Using createdb command
+createdb user_crud_db
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+# Or using psql command line
+psql -U postgres
+CREATE DATABASE user_crud_db;
+\q
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### Step 3: Backend Setup
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+# Install backend dependencies from root directory
+npm install
+
+# Create environment file
+copy .env.example .env
+# OR
+cp .env.example .env
+
+# Configure your .env file with PostgreSQL credentials:
+# DB_HOST=localhost
+# DB_PORT=5432
+# DB_USERNAME=your_postgres_username
+# DB_PASSWORD=your_postgres_password
+# DB_NAME=user_crud_db
+
+# Run database migrations
+npm run migration:run
+
+# Create uploads folder (if not created automatically)
+mkdir uploads
+
+# Start backend server (development mode)
+npm run start:dev
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### Step 4: Frontend Setup
 
-## Resources
+```bash
+# Navigate to frontend directory
+cd frontend
 
-Check out a few resources that may come in handy when working with NestJS:
+# Install frontend dependencies
+npm install
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+# Start frontend development server
+npm start
+```
 
-## Support
+## ⚙️ Environment Configuration
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Create a `.env` file in the root directory with the following variables:
 
-## Stay in touch
+```env
+# Database Configuration
+DB_HOST=localhost
+DB_PORT=5432
+DB_USERNAME=your_postgres_username
+DB_PASSWORD=your_postgres_password
+DB_NAME=user_crud_db
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+# Application Configuration
+PORT=3000
+NODE_ENV=development
 
-## License
+# Optional: JWT Secret (if authentication is added later)
+JWT_SECRET=your_jwt_secret_key
+```
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+### Available API Endpoints:
+
+| Method | Endpoint | Description | Example |
+|--------|----------|-------------|---------|
+| GET | `/user/all` | Get all users | Retrieve all users |
+| GET | `/user/:userId` | Get specific user | Get user by ID |
+| POST | `/user` | Create new user | Create new user |
+| PUT | `/user/:userId` | Update user | Update existing user |
+| DELETE | `/user/:userId` | Delete user | Remove user |
+| POST | `/user/upload/:userId` | Upload files | Upload files for user |
+
+
+## 🗂️ Project Structure
+
+```
+project-name/
+├── src/                          # Backend source code
+│   ├── user/                     # User module
+│   │   ├── entities/             # Database entities
+│   │   │   └── user.entity.ts    # User database schema
+│   │   ├── dtos/                 # Data Transfer Objects
+│   │   │   ├── create-user.dto.ts
+│   │   │   └── file-upload.dto.ts
+│   │   ├── user.controller.ts    # API endpoints
+│   │   ├── user.service.ts       # Business logic
+│   │   └── user.module.ts        # Module configuration
+│   ├── app.module.ts             # Main application module
+│   └── main.ts                   # Application entry point
+├── frontend/                     # Angular frontend
+│   ├── src/
+│   │   ├── app/                  # Angular components
+│   │   ├── assets/               # Static files
+│   │   └── ...                   # Other Angular files
+│   ├── package.json              # Frontend dependencies
+│   └── angular.json              # Angular configuration
+├── migrations/                   # Database migrations
+├── uploads/                      # User uploaded files (auto-created)
+├── .env                          # Environment variables (create this)
+├── .env.example                  # Environment variables template
+├── package.json                  # Backend dependencies
+├── tsconfig.json                 # TypeScript configuration
+├── mikro-orm.config.ts           # Database configuration
+├── nest-cli.json                 # NestJS CLI configuration
+└── README.md                     # This file!
+```
+
+
+## 🧪 Testing
+
+```bash
+# Run unit tests
+npm run test
+
+# Run end-to-end tests
+npm run test:e2e
+
+# Check test coverage
+npm run test:cov
+```
+
+## 🏗️ Build for Production
+
+### Backend Production Build:
+```bash
+npm run build
+npm run start:prod
+```
+
+### Frontend Production Build:
+```bash
+cd frontend
+npm run build
+# Build files will be generated in dist/ folder
+```
+
+## 🔍 How to Use This Application
+
+### 1. Backend APIs:
+- Visit `http://localhost:3000/api` for Swagger documentation
+- Use Postman or any API client for testing
+- Test different endpoints using the API interface
+
+### 2. Frontend Application:
+- Visit `http://localhost:4200` in your browser
+- Manage users through the UI
+- Upload files for users
+
+### 3. Database:
+- PostgreSQL database needs to be created before running the application
+- Configure database connection in environment variables or MikroORM config
+- Run migrations to create required tables: `npm run migration:run`
