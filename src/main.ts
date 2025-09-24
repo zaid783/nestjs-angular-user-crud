@@ -10,9 +10,11 @@ async function bootstrap() {
   // Configure CORS for production
   app.enableCors({
     origin: process.env.NODE_ENV === 'production' 
-      ? [process.env.FRONTEND_URL || 'https://your-app.vercel.app']
+      ? [process.env.FRONTEND_URL, 'https://*.vercel.app']
       : ['http://localhost:4200'],
-    credentials: true,                
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   });
 
   const swaggerConfig = new DocumentBuilder()

@@ -28,7 +28,8 @@
     "migration:down": "mikro-orm migration:down",
     "migration:run": "mikro-orm migration:up",
     "schema:refresh": "mikro-orm schema:refresh",
-    "postbuild": "npm run migration:run"
+    "render-postbuild": "npm run migration:run",
+    "deploy": "npm run build && npm run start:prod"
   },
   "dependencies": {
     "@mikro-orm/core": "^6.5.3",
