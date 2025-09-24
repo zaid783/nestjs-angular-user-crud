@@ -1,0 +1,55 @@
+.container {
+  max-width: 700px;
+  margin: auto;
+  padding: 20px;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+mat-form-field {
+  display: block;
+  margin-bottom: 15px;
+}
+
+table {
+  width: 100%;
+  margin-top: 20px;
+  background-color: #ecb9ec;
+}
+
+button {
+  margin-right: 10px;
+}
+
+.file-upload-section {
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px dashed #ccc;
+  border-radius: 5px;
+}
+
+.selected-files {
+  margin-top: 10px;
+}
+
+.selected-files ul {
+  list-style: none;
+  padding: 0;
+}
+
+.selected-files li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px solid #eee;
+}
