@@ -10,7 +10,7 @@ export class UserService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: EntityRepository<User>,
-    private readonly em: EntityManager, // EntityManager inject karo
+    private readonly em: EntityManager,
   ) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
@@ -27,21 +27,18 @@ export class UserService {
       createUserDto.password,
     );
 
-    // EntityManager use karo persistAndFlush ke liye
     await this.em.persistAndFlush(user);
-    
-    console.log('Created user with ID:', user.id); // Debug log
+    console.log('Created user with ID:', user.id);
     return user;
   }
 
-
-async delete(userId: number): Promise<void> {
+  async delete(userId: number): Promise<void> {
     const user = await this.userRepository.findOne({ id: userId });
     if (!user) {
       throw new NotFoundException('User Not Found!');
     }
     await this.em.removeAndFlush(user);
-    console.log('Deleted user with ID:', userId); // Debug log
+    console.log('Deleted user with ID:', userId);
   }
 
   async getAll(): Promise<User[]> {
@@ -59,7 +56,7 @@ async delete(userId: number): Promise<void> {
     user.password = updateUserDto.password;
 
     await this.em.persistAndFlush(user);
-    console.log('Updated user with ID:', userId); // Debug log
+    console.log('Updated user with ID:', userId);
     return user;
   }
 
@@ -70,6 +67,22 @@ async delete(userId: number): Promise<void> {
       throw new NotFoundException('User Not Found!');
     }
 
+    return user;
+  }
+
+  async uploadFiles(userId: number, files: Array<Express.Multer.File>): Promise<User> {
+    const user = await this.userRepository.findOne({ id: userId });
+    
+    if (!user) {
+      throw new NotFoundException('User Not Found!');
+    }
+
+    // Store file paths in database
+    const filePaths = files.map(file => file.filename);
+    user.files = user.files ? [...user.files, ...filePaths] : filePaths;
+
+    await this.em.persistAndFlush(user);
+    console.log('Uploaded files for user ID:', userId, 'Files:', filePaths);
     return user;
   }
 }

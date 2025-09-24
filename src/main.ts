@@ -7,8 +7,11 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
 
 
+  // Configure CORS for production
   app.enableCors({
-    origin: 'http://localhost:4200',  
+    origin: process.env.NODE_ENV === 'production' 
+      ? [process.env.FRONTEND_URL || 'https://your-app.vercel.app']
+      : ['http://localhost:4200'],
     credentials: true,                
   });
 
@@ -21,6 +24,8 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(3000);
+  const port = process.env.PORT || 3000;
+  await app.listen(port);
+  console.log(`Application is running on: ${await app.getUrl()}`);
 }
 bootstrap();

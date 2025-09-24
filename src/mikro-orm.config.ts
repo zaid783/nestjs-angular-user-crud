@@ -10,13 +10,15 @@ export default defineConfig({
   entities: ['dist/**/*.entity.js'],
   entitiesTs: ['src/**/*.entity.ts'],
   dbName: process.env.DB_NAME || 'myapp_database',
-  driver: PostgreSqlDriver,  // 👈 correct
+  driver: PostgreSqlDriver,
   port: Number(process.env.DB_PORT) || 5432,
   user: process.env.DB_USERNAME || 'postgres',
   host: process.env.DB_HOST || 'localhost',
   password: process.env.DB_PASSWORD || '0005',
+  // Use DATABASE_URL for Railway deployment
+  clientUrl: process.env.DATABASE_URL,
   highlighter: new SqlHighlighter(),
-  debug: true,
+  debug: process.env.NODE_ENV !== 'production',
   logger: logger.log.bind(logger),
   metadataProvider: TsMorphMetadataProvider,
   migrations: {

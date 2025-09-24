@@ -18,6 +18,8 @@ export class User {
   @Property()
   password: string;
 
+  @Property({ type: 'json', nullable: true })
+  files?: string[];
 
   @Property()
   createdAt = new Date();
@@ -29,6 +31,7 @@ export class User {
     name: string,
     email: string,
     password: string,
+    
   ) {
     this.name = name;
     this.email = email;
